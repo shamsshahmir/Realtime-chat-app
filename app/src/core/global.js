@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 
 const useGlobal = create(set => ({
-  authenticated: true,
+  authenticated: false,
   user: {},
   login: user => {
     set(state => ({
