@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
 import './src/core/fontawesome';
 import Splash from './src/screens/Splash';
@@ -21,14 +21,19 @@ const LightTheme = {
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [intialized] = useState(true);
+  const initialized = useGlobal(state => state.initialized);
   const authenticated = useGlobal(state => state.authenticated);
+  const init = useGlobal(state => state.init);
+
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <NavigationContainer theme={LightTheme}>
       <StatusBar barStyle="dark-content" />
       <Stack.Navigator>
-        {!intialized ? (
+        {!initialized ? (
           <>
             <Stack.Screen name="Splash" component={Splash} />
           </>

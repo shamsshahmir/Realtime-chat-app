@@ -36,9 +36,28 @@ REST_FRAMEWORK = {
     )
 }
 
+# Thumbnail uploads
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+# Daphne
+ASGI_APPLICATION = 'core.asgi.application'
+
+#channels
+CHANNEL_LAYERS = {
+	'default': {
+		'BACKEND': 'channels_redis.core.RedisChannelLayer',
+		'CONFIG': {
+			'hosts': [('127.0.0.1', 6379)]
+		}
+	}
+}
+
 # Application definition
 
 INSTALLED_APPS = [
+   'daphne',
+	'rest_framework',
     'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat'
+    'chat',
 ]
 
 MIDDLEWARE = [

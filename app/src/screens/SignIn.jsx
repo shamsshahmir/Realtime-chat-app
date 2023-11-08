@@ -53,7 +53,12 @@ const SignIn = ({navigation}) => {
     })
       .then(response => {
         utils.log('Signin', response.data);
-        login(response.data);
+
+        const credentials = {
+          username: username,
+          password: password,
+        };
+        login(credentials, response.data.user, response.data.tokens);
       })
       .catch(error => {
         if (error.response) {

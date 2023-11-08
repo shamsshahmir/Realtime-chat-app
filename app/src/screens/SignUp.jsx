@@ -85,7 +85,11 @@ const SignUp = ({navigation}) => {
     })
       .then(response => {
         utils.log('Sign Up:', response.data);
-        login(response.data);
+        const credentials = {
+          username: username,
+          password: password1,
+        };
+        login(credentials, response.data.user, response.data.tokens);
       })
       .catch(error => {
         if (error.response) {
