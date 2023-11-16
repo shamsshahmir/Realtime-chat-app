@@ -27,6 +27,9 @@ const Home = ({navigation}) => {
     };
   }, []);
 
+  const onSearch = () => {
+    navigation.navigate('Search');
+  };
   return (
     <Tab.Navigator
       screenOptions={({route, navigation}) => ({
@@ -37,7 +40,7 @@ const Home = ({navigation}) => {
         ),
         headerRight: () => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onSearch}>
               <FontAwesomeIcon
                 style={{marginRight: 16}}
                 icon="magnifying-glass"
